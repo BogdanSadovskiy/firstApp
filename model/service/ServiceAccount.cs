@@ -42,7 +42,7 @@ namespace firstApp.model.service
                 try
                 {
                     connection.Open();
-                    id = repository.createNewAccount(connection, name, email, password);
+                    repository.createNewAccount(connection, name, email, password);
                 }
 
                 catch (Exception ex)
@@ -51,6 +51,43 @@ namespace firstApp.model.service
                 }
             }
             return id;
+        }
+        public AccountTable getAccountById(int id)
+        {
+            AccountTable account = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    account = repository.getAccountById(connection, id);
+                }
+
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                return account;
+            }
+        }
+
+        public void updateAccountName(int id, string newName)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    repository.updateAccountName(connection,id, newName);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine("\n" + ex.Message + "\n");
+                }
+            }
+
+            
+            
         }
 
     }

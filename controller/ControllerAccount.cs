@@ -21,5 +21,13 @@ namespace firstApp.controller.controllerAccount
         {
             return serviceAccount.createNewAccount(name, email, password);
         }
+        public AccountTable getAccountById(int id)
+        {
+            return serviceAccount.getAccountById(id);
+        }
+        public void updateAccountName(int id, string newName)
+        {
+            serviceAccount.updateAccountName(id, newName);
+        }
     }
 }

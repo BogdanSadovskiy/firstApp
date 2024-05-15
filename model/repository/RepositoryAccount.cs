@@ -1,20 +1,17 @@
-﻿using System;
+﻿using firstApp.entity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using firstApp.entity;
 using System.Data.SqlClient;
 namespace firstApp.model.repository.RepositoryAccount
 {
     public class RepositoryAccount
     {
-        
+
         public List<AccountTable> getAllAccounts(SqlConnection connection)
         {
-          
+
             List<AccountTable> accountTables = new List<AccountTable>();
-            string query = "SELECT * from account";
+            string query = "SELECT * from accounts";
             using (SqlCommand cmd = new SqlCommand(query, connection))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -33,24 +30,50 @@ namespace firstApp.model.repository.RepositoryAccount
             return accountTables;
         }
 
-        public int createNewAccount(SqlConnection connection , string name, string email, string password)
+        public void createNewAccount(SqlConnection connection, string name, string email, string password)
         {
-            string query = $"INSERT INTO account value ('{name}','{email}'','{password}');";
+            string query = $"INSERT INTO accounts  output inserted.id  values ('@name, @email, @password) ;";
 
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+                cmd.Parameters.Add("@name", System.Data.SqlDbType.NVarChar).Value = name;
+                cmd.Parameters.Add("@email", System.Data.SqlDbType.NVarChar).Value = email;
+                cmd.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = password;
+                int id = (int)cmd.ExecuteScalar();
+                Console.WriteLine("you created id - " + id);
+            }
+        }
+
+        public AccountTable getAccountById(SqlConnection connection, int id)
+        {
+            AccountTable account = null;
+            string query = "SELECT * FROM accounts WHERE id = " + id.ToString() + ";";
             using (SqlCommand cmd = new SqlCommand(query, connection))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        int id = Convert.ToInt32(reader["id"]);
+                        int recivedId = Convert.ToInt32(reader["id"]);
                         string name = Convert.ToString(reader["name"]);
                         string email = Convert.ToString(reader["email"]);
                         string password = Convert.ToString(reader["password"]);
-                        AccountTable account = new AccountTable(id, name, email, password);
-                        accountTables.Add(account);
+                        account = new AccountTable(recivedId, name, email, password);
                     }
                 }
             }
+            return account;
         }
+
+        public void updateAccountName(SqlConnection connection, int id, string newName)
+        {
+            string query = "UPDATE  accounts SET name = @newName  WHERE id = " + id.ToString();
+
+            using (SqlCommand cmd = new SqlCommand(query, connection))
+            {
+                cmd.Parameters.Add("@newName", System.Data.SqlDbType.NVarChar).Value = newName;
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
 }

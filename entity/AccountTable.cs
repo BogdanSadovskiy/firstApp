@@ -13,6 +13,11 @@ namespace firstApp.entity
         public string Email { get; set; }
         public string Password { get; set; }
 
+        public override string ToString()
+        {
+            return "ID " + Id.ToString() + " Name " + Name + " Email " + Email + " Password " +  Password;
+        }
+
         public AccountTable(int id, string name, string email, string password)
         {
             Id = id;
