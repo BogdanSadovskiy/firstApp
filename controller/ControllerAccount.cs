@@ -34,5 +34,10 @@ namespace firstApp.controller.controllerAccount
         {
             serviceAccount.deleteAccount(id);
         }
+
+        public AccountTable SighIn(string login, string password)
+        {
+            return serviceAccount.SighIn(login, password);
+        }
     }
 }

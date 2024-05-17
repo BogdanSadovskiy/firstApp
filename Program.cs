@@ -12,10 +12,8 @@ namespace firstApp
         static void Main(string[] args)
         {
             ViewAccount.showAllAccounts();
-            Console.WriteLine();
-            ViewAccount.deleteAccount();
-            Console.WriteLine();
-            ViewAccount.showAllAccounts();
+
+
             Console.ReadLine();
 
         }

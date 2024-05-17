@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 using firstApp.entity;
 using firstApp.model.repository.RepositoryAccount;
 using System.Data.SqlClient;
+using System.Runtime.Remoting.Channels;
+using System.Configuration;
 namespace firstApp.model.service
 {
     class ServiceAccount
     {
-
-        string connectionString = "Server=tcp:bogdanserver.database.windows.net,1433;" +
-            "Initial Catalog=db;Persist Security Info=False;User ID=CloudSA95db027a;Password=Workout100500;" +
-            "MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        string connectionString = ConfigurationManager.ConnectionStrings["db_connectionString"].ConnectionString;
         RepositoryAccount repository = new RepositoryAccount();
         public List<AccountTable> getAllAccounts()
         {
@@ -104,6 +103,24 @@ namespace firstApp.model.service
                     Console.WriteLine(ex.Message);
                 }
             }
+        }
+        public AccountTable SighIn(string login, string password)
+        {
+            AccountTable account = null;
+            using(SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                   account = repository.SighIn(connection, login, password);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
+            }
+            return account;
         }
     }
 }

@@ -85,5 +85,10 @@ namespace firstApp.model.repository.RepositoryAccount
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public AccountTable SighIn(SqlConnection connection, string login, string password)
+        {
+
+        }
     }
 }
