@@ -75,5 +75,15 @@ namespace firstApp.model.repository.RepositoryAccount
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public void deleteAccount(SqlConnection connection,int id)
+        {
+            string query = "DELETE FROM accounts WHERE ID = @id";
+            using(SqlCommand cmd = new SqlCommand(query,connection))
+            {
+                cmd.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = id;
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

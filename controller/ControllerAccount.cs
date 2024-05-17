@@ -29,5 +29,10 @@ namespace firstApp.controller.controllerAccount
         {
             serviceAccount.updateAccountName(id, newName);
         }
+
+        public void deleteAccount(int id)
+        {
+            serviceAccount.deleteAccount(id);
+        }
     }
 }

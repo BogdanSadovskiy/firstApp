@@ -90,5 +90,20 @@ namespace firstApp.model.service
             
         }
 
+        public void deleteAccount(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    repository.deleteAccount(connection,id);
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
     }
 }

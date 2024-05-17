@@ -9,7 +9,23 @@ namespace firstApp.view.menu
 {
     public class Menu
     {
-        
+        public int showInitialInterface()
+        {
+            Console.WriteLine("  1 - Show all accounts");
+            Console.WriteLine("  2 - Add account");
+            Console.WriteLine("  3 - Update account");
+            Console.WriteLine("  4 - Get account by ID");
+            Console.WriteLine("  5 - Delete account");
+            return Int32.Parse( Console.ReadLine());
+
+        }
+
+        public int deleteAccount()
+        {
+            Console.WriteLine("Delete this account?/n1 - YES / 0 - no");
+            return Int32.Parse(Console.ReadLine());
+        }
+
         public int updateIfAccountFoundMenu()
         {
             Console.WriteLine("1 - Name \n" +

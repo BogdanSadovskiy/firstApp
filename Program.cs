@@ -13,7 +13,7 @@ namespace firstApp
         {
             ViewAccount.showAllAccounts();
             Console.WriteLine();
-            ViewAccount.updateAccount();
+            ViewAccount.deleteAccount();
             Console.WriteLine();
             ViewAccount.showAllAccounts();
             Console.ReadLine();
