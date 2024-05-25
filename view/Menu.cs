@@ -60,6 +60,7 @@ namespace firstApp.view.menu
         {
             Console.WriteLine("\nInput Name\n");
             return Console.ReadLine();
+
         }
     }
 }
