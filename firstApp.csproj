@@ -44,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="controller\ControllerAccount.cs" />
-    <Compile Include="entity\AccountTable.cs" />
-    <Compile Include="model\repository\RepositoryAccount.cs" />
-    <Compile Include="model\service\ServiceAccount.cs" />
+    <Compile Include="controller\UserController.cs" />
+    <Compile Include="entity\User.cs" />
+    <Compile Include="model\repository\UserRepository.cs" />
+    <Compile Include="model\service\UserService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="view\Menu.cs" />

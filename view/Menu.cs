@@ -1,9 +1,6 @@
-﻿using System;
+﻿using firstApp.entity;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using firstApp.entity;
 
 namespace firstApp.view.menu
 {
@@ -16,7 +13,7 @@ namespace firstApp.view.menu
             Console.WriteLine("  3 - Update account");
             Console.WriteLine("  4 - Get account by ID");
             Console.WriteLine("  5 - Delete account");
-            return Int32.Parse( Console.ReadLine());
+            return Int32.Parse(Console.ReadLine());
 
         }
 
@@ -40,13 +37,23 @@ namespace firstApp.view.menu
             return Int32.Parse(Console.ReadLine());
         }
 
-        public void showAllAccounts(List<AccountTable> accountTables)
+        public void showAllUsers(List<User> users)
         {
-            accountTables.ForEach(AccountTable => showAccount(AccountTable));
+            if (users != null)
+            {
+                users.ForEach(user => showAccount(user));
+            }
         }
 
-        public void showAccount(AccountTable account) {
-            Console.WriteLine($"\t{account.Id, -3} {account.Name, -15} {account.Email, -25} {account.Password}");
+        public void showAccount(User account)
+        {
+            Console.WriteLine($"\t{account.Id,-3} " +
+                $"{account.FirstName,-10} " +
+                $"{account.LastName, -15} " +
+                $"{account.PhoneNumber, -15} " +
+                $"{account.Email,-15} " +
+                $"{account.Password, -25} " +
+                $"{account.RoleId,-5}");
         }
 
         public string updateAccountName()

@@ -11,7 +11,7 @@ namespace firstApp
     {
         static void Main(string[] args)
         {
-            ViewAccount.showAllAccounts();
+            ViewAccount.initialInterface();
 
 
             Console.ReadLine();
